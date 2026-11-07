@@ -1,0 +1,49 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ai-test-platform-postgres
+    environment:
+      POSTGRES_USER: ai
+      POSTGRES_PASSWORD: ai_local_password
+      POSTGRES_DB: ai_test_platform
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ai -d ai_test_platform"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: .
+    container_name: ai-test-platform-backend
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://ai:ai_local_password@postgres:5432/ai_test_platform
+      FRONTEND_URL: http://localhost:8080
+      COOKIE_SECURE: "false"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: ai-test-platform-frontend
+    depends_on:
+      - backend
+    ports:
+      - "127.0.0.1:8080:80"
+
+volumes:
+  pgdata:
+    name: ai_test_platform_pgdata
+  uploads:
+    name: ai_test_platform_uploads

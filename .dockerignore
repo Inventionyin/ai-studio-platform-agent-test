@@ -1,0 +1,13 @@
+node_modules
+dist
+backend/.venv
+backend/uploads
+backend/app/app.db
+backend/.env
+backend/__pycache__
+**/__pycache__
+.pytest_cache
+.planning
+.figma
+.git
+*.log

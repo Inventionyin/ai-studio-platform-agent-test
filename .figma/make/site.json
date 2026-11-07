@@ -1,0 +1,12 @@
+{
+  "title": "AI 测试开发平台",
+  "description": "AI 驱动的测试开发平台：需求 → 原型/接口设计 → AI 用例 → API / WebUI / App 自动化 → 知识库与工作流编排。",
+  "language": "zh-CN",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

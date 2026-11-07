@@ -1,0 +1,1695 @@
+{
+  "db": {
+    "projects": [
+      {
+        "id": "ecommerce",
+        "name": "电商核心系统",
+        "description": "主站交易链路、会员与营销活动",
+        "status": "正常",
+        "requirementCount": 42,
+        "caseCount": 1286,
+        "apiCount": 214,
+        "taskCount": 37,
+        "passRate": 91.8,
+        "members": [
+          {
+            "userId": "U-001",
+            "name": "张伟",
+            "role": "管理员"
+          },
+          {
+            "userId": "U-002",
+            "name": "李娜",
+            "role": "开发者"
+          },
+          {
+            "userId": "U-003",
+            "name": "王磊",
+            "role": "评审者"
+          }
+        ]
+      },
+      {
+        "id": "payment",
+        "name": "支付中台",
+        "description": "支付网关、清结算与对账服务",
+        "status": "正常",
+        "requirementCount": 28,
+        "caseCount": 624,
+        "apiCount": 96,
+        "taskCount": 21,
+        "passRate": 88.4,
+        "members": [
+          {
+            "userId": "U-001",
+            "name": "张伟",
+            "role": "管理员"
+          },
+          {
+            "userId": "U-003",
+            "name": "王磊",
+            "role": "评审者"
+          }
+        ]
+      },
+      {
+        "id": "member",
+        "name": "会员营销平台",
+        "description": "会员成长体系、权益与优惠券",
+        "status": "正常",
+        "requirementCount": 37,
+        "caseCount": 486,
+        "apiCount": 64,
+        "taskCount": 18,
+        "passRate": 93.2,
+        "members": [
+          {
+            "userId": "U-001",
+            "name": "张伟",
+            "role": "管理员"
+          },
+          {
+            "userId": "U-002",
+            "name": "李娜",
+            "role": "开发者"
+          },
+          {
+            "userId": "U-004",
+            "name": "赵敏",
+            "role": "只读"
+          }
+        ]
+      }
+    ],
+    "members": [
+      {
+        "id": "U-001",
+        "name": "张伟",
+        "email": "zhangwei@corp.com",
+        "role": "管理员",
+        "dept": "质量部",
+        "projectCount": 3,
+        "status": "启用",
+        "lastLogin": "今天 09:01"
+      },
+      {
+        "id": "U-002",
+        "name": "李娜",
+        "email": "lina@corp.com",
+        "role": "开发者",
+        "dept": "研发一部",
+        "projectCount": 2,
+        "status": "启用",
+        "lastLogin": "今天 10:24"
+      },
+      {
+        "id": "U-003",
+        "name": "王磊",
+        "email": "wanglei@corp.com",
+        "role": "评审者",
+        "dept": "质量部",
+        "projectCount": 2,
+        "status": "启用",
+        "lastLogin": "今天 09:58"
+      },
+      {
+        "id": "U-004",
+        "name": "赵敏",
+        "email": "zhaomin@corp.com",
+        "role": "只读",
+        "dept": "产品部",
+        "projectCount": 1,
+        "status": "停用",
+        "lastLogin": "昨天"
+      },
+      {
+        "id": "U-005",
+        "name": "陈晨",
+        "email": "chenchen@corp.com",
+        "role": "开发者",
+        "dept": "研发二部",
+        "projectCount": 2,
+        "status": "启用",
+        "lastLogin": "昨天"
+      }
+    ],
+    "roles": [
+      {
+        "name": "管理员",
+        "description": "全部权限，含成员与模型配置",
+        "memberCount": 2,
+        "permissions": [
+          "项目管理",
+          "成员管理",
+          "生成任务",
+          "模型配置",
+          "审计查看"
+        ]
+      },
+      {
+        "name": "开发者",
+        "description": "创建 / 编辑 / 执行",
+        "memberCount": 14,
+        "permissions": [
+          "需求管理",
+          "生成任务",
+          "用例编辑",
+          "执行测试"
+        ]
+      },
+      {
+        "name": "评审者",
+        "description": "评审用例与产物",
+        "memberCount": 6,
+        "permissions": [
+          "用例评审",
+          "产物查看",
+          "意见记录"
+        ]
+      },
+      {
+        "name": "只读",
+        "description": "仅查看",
+        "memberCount": 9,
+        "permissions": [
+          "只读查看"
+        ]
+      }
+    ],
+    "requirements": [
+      {
+        "id": "REQ-021",
+        "title": "会员中心改版",
+        "priority": "P0",
+        "status": "已解析",
+        "owner": "李娜",
+        "version": "v3",
+        "description": "会员中心展示会员等级、积分与成长值，提供权益领取入口及订单快捷入口，支持按等级展示差异化权益。",
+        "docName": "会员中心改版需求文档 v3.docx",
+        "points": [
+          "会员等级与成长值展示",
+          "积分明细查询",
+          "权益领取与去重",
+          "订单状态快捷入口"
+        ],
+        "createdAt": "2026-10-18 10:12",
+        "updatedAt": "2026-10-23 16:40",
+        "generations": [],
+        "prototype": {
+          "page": "会员中心",
+          "flow": "首页 → 会员中心 → 权益领取 / 订单入口",
+          "sections": [
+            {
+              "name": "顶部导航",
+              "items": [
+                "Logo",
+                "搜索",
+                "头像"
+              ]
+            },
+            {
+              "name": "会员卡片",
+              "items": [
+                "等级",
+                "积分",
+                "成长值进度"
+              ]
+            },
+            {
+              "name": "权益列表",
+              "items": [
+                "免运费",
+                "生日礼",
+                "专属客服",
+                "折扣券"
+              ]
+            },
+            {
+              "name": "订单入口",
+              "items": [
+                "待付款",
+                "待发货",
+                "待收货",
+                "售后"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "REQ-020",
+        "title": "手机号验证码登录",
+        "priority": "P0",
+        "status": "已解析",
+        "owner": "张伟",
+        "version": "v2",
+        "description": "支持手机号 + 短信验证码登录，包含验证码频控、失效与异常提示。",
+        "docName": "手机号登录需求说明.pdf",
+        "points": [
+          "会员等级与成长值展示",
+          "积分明细查询",
+          "权益领取与去重",
+          "订单状态快捷入口"
+        ],
+        "createdAt": "2026-10-18 10:12",
+        "updatedAt": "2026-10-23 16:40",
+        "generations": []
+      },
+      {
+        "id": "REQ-019",
+        "title": "订单退款流程",
+        "priority": "P1",
+        "status": "解析中",
+        "owner": "王磊",
+        "version": "v1",
+        "description": "退款申请、审核、原路退回与退款单状态同步。",
+        "docName": "退款流程 V1.2.docx",
+        "points": [
+          "会员等级与成长值展示",
+          "积分明细查询",
+          "权益领取与去重",
+          "订单状态快捷入口"
+        ],
+        "createdAt": "2026-10-18 10:12",
+        "updatedAt": "2026-10-23 16:40",
+        "generations": []
+      },
+      {
+        "id": "REQ-018",
+        "title": "优惠券叠加规则",
+        "priority": "P2",
+        "status": "待评审",
+        "owner": "赵敏",
+        "version": "v1",
+        "description": "定义平台券、店铺券、会员券的叠加与互斥规则。",
+        "docName": "优惠券规则.md",
+        "points": [
+          "会员等级与成长值展示",
+          "积分明细查询",
+          "权益领取与去重",
+          "订单状态快捷入口"
+        ],
+        "createdAt": "2026-10-18 10:12",
+        "updatedAt": "2026-10-23 16:40",
+        "generations": []
+      }
+    ],
+    "testCases": [
+      {
+        "id": "TC-1001",
+        "title": "正确账号密码登录成功",
+        "module": "登录",
+        "type": "正向",
+        "priority": "P0",
+        "status": "通过",
+        "version": "v2",
+        "precondition": "存在有效账号",
+        "steps": [
+          "打开登录页",
+          "输入正确账号密码",
+          "点击登录"
+        ],
+        "expected": "跳转工作台并显示用户名",
+        "source": "手工",
+        "owner": "王磊",
+        "updatedAt": "10-22 15:20"
+      },
+      {
+        "id": "TC-1002",
+        "title": "密码错误提示信息",
+        "module": "登录",
+        "type": "异常",
+        "priority": "P1",
+        "status": "待评审",
+        "version": "v1",
+        "precondition": "存在有效账号",
+        "steps": [
+          "输入正确账号",
+          "输入错误密码",
+          "点击登录"
+        ],
+        "expected": "提示“账号或密码错误”且不跳转",
+        "source": "手工",
+        "owner": "王磊",
+        "updatedAt": "10-22 16:02"
+      },
+      {
+        "id": "TC-1003",
+        "title": "订单创建后库存扣减",
+        "module": "订单",
+        "type": "正向",
+        "priority": "P0",
+        "status": "通过",
+        "version": "v3",
+        "precondition": "库存充足",
+        "steps": [
+          "加入购物车",
+          "提交订单",
+          "查询库存"
+        ],
+        "expected": "库存减少对应数量",
+        "source": "AI",
+        "owner": "李娜",
+        "updatedAt": "10-21 11:40"
+      },
+      {
+        "id": "TC-1024",
+        "title": "会员等级正确展示",
+        "module": "会员",
+        "type": "正向",
+        "priority": "P0",
+        "status": "待评审",
+        "version": "v1",
+        "precondition": "用户已登录，会员等级为黄金",
+        "steps": [
+          "进入会员中心",
+          "查看会员卡片"
+        ],
+        "expected": "展示“黄金会员”及对应积分",
+        "source": "AI",
+        "owner": "李娜",
+        "updatedAt": "10-24 10:24"
+      },
+      {
+        "id": "TC-1025",
+        "title": "积分为 0 时显示空状态",
+        "module": "会员",
+        "type": "边界",
+        "priority": "P1",
+        "status": "待评审",
+        "version": "v1",
+        "precondition": "用户积分为 0",
+        "steps": [
+          "进入会员中心",
+          "查看积分模块"
+        ],
+        "expected": "展示空状态文案而非空白",
+        "source": "AI",
+        "owner": "李娜",
+        "updatedAt": "10-24 10:24"
+      },
+      {
+        "id": "TC-1026",
+        "title": "重复领取权益幂等",
+        "module": "会员",
+        "type": "异常",
+        "priority": "P1",
+        "status": "待评审",
+        "version": "v1",
+        "precondition": "用户已领取生日礼",
+        "steps": [
+          "再次点击领取",
+          "查看提示与权益状态"
+        ],
+        "expected": "提示已领取，权益数量不重复增加",
+        "source": "AI",
+        "owner": "李娜",
+        "updatedAt": "10-24 10:25"
+      }
+    ],
+    "reviews": [
+      {
+        "caseId": "TC-1024",
+        "title": "会员等级正确展示",
+        "status": "待评审",
+        "comments": [
+          {
+            "id": "C-1",
+            "author": "王磊",
+            "content": "建议补充非会员场景",
+            "time": "昨天 16:20",
+            "action": "意见"
+          }
+        ]
+      },
+      {
+        "caseId": "TC-1025",
+        "title": "积分为 0 时显示空状态",
+        "status": "待评审",
+        "comments": []
+      },
+      {
+        "caseId": "TC-1026",
+        "title": "重复领取权益幂等",
+        "status": "待评审",
+        "comments": []
+      }
+    ],
+    "apiDefs": [
+      {
+        "id": "API-1",
+        "method": "GET",
+        "path": "/api/v1/user/info",
+        "summary": "用户信息",
+        "status": "启用",
+        "source": "手工",
+        "module": "用户",
+        "creator": "张伟"
+      },
+      {
+        "id": "API-2",
+        "method": "POST",
+        "path": "/api/v1/order/create",
+        "summary": "创建订单",
+        "status": "启用",
+        "source": "手工",
+        "module": "订单",
+        "creator": "王磊"
+      },
+      {
+        "id": "API-3",
+        "method": "POST",
+        "path": "/api/v1/payment/callback",
+        "summary": "支付回调",
+        "status": "启用",
+        "source": "手工",
+        "module": "支付",
+        "creator": "王磊"
+      }
+    ],
+    "suites": [
+      {
+        "id": "S-1",
+        "name": "登录回归",
+        "count": 18,
+        "cron": "0 2 * * *",
+        "lastResult": "成功",
+        "status": "启用"
+      },
+      {
+        "id": "S-2",
+        "name": "支付回调",
+        "count": 24,
+        "cron": "0 */4 * * *",
+        "lastResult": "失败",
+        "status": "启用"
+      },
+      {
+        "id": "S-3",
+        "name": "会员权益",
+        "count": 12,
+        "cron": "0 3 * * 1",
+        "lastResult": "成功",
+        "status": "停用"
+      }
+    ],
+    "reports": [
+      {
+        "id": "R-128",
+        "name": "夜间全量 #128",
+        "passed": 320,
+        "total": 320,
+        "duration": "4m12s",
+        "time": "02:00",
+        "result": "成功",
+        "failures": []
+      },
+      {
+        "id": "R-56",
+        "name": "支付回调 #56",
+        "passed": 21,
+        "total": 24,
+        "duration": "58s",
+        "time": "08:00",
+        "result": "失败",
+        "failures": [
+          {
+            "case": "回调重复通知幂等",
+            "error": "期望 200，实际 500"
+          },
+          {
+            "case": "签名校验失败场景",
+            "error": "未返回 401"
+          },
+          {
+            "case": "超时重试",
+            "error": "响应时间 6200ms > 5000ms"
+          }
+        ]
+      }
+    ],
+    "uiPages": [
+      {
+        "id": "P-1",
+        "name": "登录页",
+        "url": "/login"
+      },
+      {
+        "id": "P-2",
+        "name": "商品详情页",
+        "url": "/product/:id"
+      },
+      {
+        "id": "P-3",
+        "name": "购物车",
+        "url": "/cart"
+      }
+    ],
+    "uiElements": [
+      {
+        "id": "E-1",
+        "pageId": "P-1",
+        "pageName": "登录页",
+        "name": "用户名输入框",
+        "selectorType": "CSS",
+        "selectorValue": "#username"
+      },
+      {
+        "id": "E-2",
+        "pageId": "P-1",
+        "pageName": "登录页",
+        "name": "登录按钮",
+        "selectorType": "XPath",
+        "selectorValue": "//button[@type='submit']"
+      },
+      {
+        "id": "E-3",
+        "pageId": "P-2",
+        "pageName": "商品详情页",
+        "name": "加入购物车按钮",
+        "selectorType": "Text",
+        "selectorValue": "加入购物车"
+      },
+      {
+        "id": "E-4",
+        "pageId": "P-3",
+        "pageName": "购物车",
+        "name": "结算按钮",
+        "selectorType": "CSS",
+        "selectorValue": ".checkout-btn"
+      }
+    ],
+    "uiScripts": [
+      {
+        "id": "US-1",
+        "name": "下单流程",
+        "framework": "Playwright + POM",
+        "status": "启用",
+        "updatedAt": "10-23 18:20",
+        "content": "from pages.login import LoginPage\nfrom pages.cart import CartPage\n\n\ndef test_checkout(page):\n    LoginPage(page).login(\"demo\", \"demo123\")\n    cart = CartPage(page)\n    cart.add_first_item()\n    cart.checkout()\n    assert page.locator(\".order-success\").is_visible()"
+      },
+      {
+        "id": "US-2",
+        "name": "登录冒烟",
+        "framework": "Playwright + POM",
+        "status": "启用",
+        "updatedAt": "10-22 09:40",
+        "content": "from pages.login import LoginPage\n\n\ndef test_login_smoke(page):\n    login = LoginPage(page)\n    login.open()\n    login.login(\"demo\", \"demo123\")\n    assert page.title() == \"工作台\""
+      }
+    ],
+    "uiRuns": [
+      {
+        "id": "UR-1",
+        "script": "下单流程",
+        "browser": "Chromium",
+        "result": "失败",
+        "shots": 3,
+        "video": true,
+        "time": "09:12",
+        "duration": "48s"
+      },
+      {
+        "id": "UR-2",
+        "script": "登录冒烟",
+        "browser": "Firefox",
+        "result": "成功",
+        "shots": 2,
+        "video": true,
+        "time": "08:40",
+        "duration": "22s"
+      },
+      {
+        "id": "UR-3",
+        "script": "下单流程",
+        "browser": "WebKit",
+        "result": "成功",
+        "shots": 4,
+        "video": false,
+        "time": "昨天 21:10",
+        "duration": "51s"
+      }
+    ],
+    "recorderSteps": [
+      {
+        "id": 1,
+        "action": "打开页面",
+        "target": "https://demo.local/login",
+        "value": ""
+      },
+      {
+        "id": 2,
+        "action": "输入文本",
+        "target": "#username",
+        "value": "demo"
+      },
+      {
+        "id": 3,
+        "action": "输入文本",
+        "target": "#password",
+        "value": "demo123"
+      },
+      {
+        "id": 4,
+        "action": "点击元素",
+        "target": "//button[@type='submit']",
+        "value": ""
+      }
+    ],
+    "devices": [
+      {
+        "id": "D-1",
+        "name": "Pixel 7",
+        "os": "Android 14",
+        "resolution": "1080×2400",
+        "status": "在线",
+        "occupancy": "空闲"
+      },
+      {
+        "id": "D-2",
+        "name": "iPhone 15",
+        "os": "iOS 17",
+        "resolution": "1179×2556",
+        "status": "在线",
+        "occupancy": "执行中"
+      },
+      {
+        "id": "D-3",
+        "name": "Mi 13",
+        "os": "Android 13",
+        "resolution": "1080×2400",
+        "status": "离线",
+        "occupancy": "-"
+      },
+      {
+        "id": "D-4",
+        "name": "Pixel 6",
+        "os": "Android 13",
+        "resolution": "1080×2340",
+        "status": "在线",
+        "occupancy": "空闲"
+      }
+    ],
+    "flowNodes": [
+      {
+        "id": "F-1",
+        "type": "启动 App",
+        "label": "打开会员中心",
+        "config": "package=com.demo.member"
+      },
+      {
+        "id": "F-2",
+        "type": "图像识别",
+        "label": "识别“我的”Tab",
+        "config": "template=tab_mine.png, threshold=0.92"
+      },
+      {
+        "id": "F-3",
+        "type": "点击",
+        "label": "点击“我的”",
+        "config": "x=540, y=2280"
+      },
+      {
+        "id": "F-4",
+        "type": "断言",
+        "label": "断言昵称可见",
+        "config": "ocr=会员昵称"
+      }
+    ],
+    "appRuns": [
+      {
+        "id": "AR-1",
+        "flow": "会员中心巡检测试",
+        "device": "Pixel 7",
+        "result": "成功",
+        "time": "今天 09:30",
+        "duration": "1m12s"
+      },
+      {
+        "id": "AR-2",
+        "flow": "支付流程回归",
+        "device": "iPhone 15",
+        "result": "失败",
+        "time": "今天 08:10",
+        "duration": "2m04s"
+      },
+      {
+        "id": "AR-3",
+        "flow": "登录冒烟",
+        "device": "Pixel 6",
+        "result": "成功",
+        "time": "昨天 20:02",
+        "duration": "42s"
+      }
+    ],
+    "dataTools": [
+      {
+        "id": "DT-1",
+        "name": "身份证生成",
+        "tag": "身份",
+        "description": "生成通过校验位的身份证号",
+        "calls": 3201,
+        "params": [
+          {
+            "name": "count",
+            "label": "生成数量",
+            "placeholder": "10"
+          },
+          {
+            "name": "region",
+            "label": "地区编码",
+            "placeholder": "110101"
+          }
+        ]
+      },
+      {
+        "id": "DT-2",
+        "name": "手机号生成",
+        "tag": "身份",
+        "description": "按运营商批量生成号码",
+        "calls": 2876,
+        "params": [
+          {
+            "name": "count",
+            "label": "生成数量",
+            "placeholder": "20"
+          },
+          {
+            "name": "carrier",
+            "label": "运营商",
+            "placeholder": "移动/联通/电信"
+          }
+        ]
+      },
+      {
+        "id": "DT-3",
+        "name": "银行卡生成",
+        "tag": "金融",
+        "description": "生成 Luhn 校验通过的卡号",
+        "calls": 1104,
+        "params": [
+          {
+            "name": "count",
+            "label": "生成数量",
+            "placeholder": "5"
+          },
+          {
+            "name": "bank",
+            "label": "银行",
+            "placeholder": "招商银行"
+          }
+        ]
+      },
+      {
+        "id": "DT-4",
+        "name": "SQL 批量造数",
+        "tag": "数据库",
+        "description": "按表结构生成 INSERT 语句",
+        "calls": 642,
+        "params": [
+          {
+            "name": "table",
+            "label": "目标表",
+            "placeholder": "orders"
+          },
+          {
+            "name": "rows",
+            "label": "行数",
+            "placeholder": "1000"
+          }
+        ]
+      },
+      {
+        "id": "DT-5",
+        "name": "姓名生成",
+        "tag": "身份",
+        "description": "中文姓名与拼音",
+        "calls": 521,
+        "params": [
+          {
+            "name": "count",
+            "label": "生成数量",
+            "placeholder": "10"
+          }
+        ]
+      },
+      {
+        "id": "DT-6",
+        "name": "邮箱生成",
+        "tag": "身份",
+        "description": "随机邮箱地址",
+        "calls": 488,
+        "params": [
+          {
+            "name": "count",
+            "label": "生成数量",
+            "placeholder": "10"
+          },
+          {
+            "name": "domain",
+            "label": "域名",
+            "placeholder": "corp.com"
+          }
+        ]
+      },
+      {
+        "id": "DT-7",
+        "name": "地址生成",
+        "tag": "地理",
+        "description": "省市区与详细地址",
+        "calls": 377,
+        "params": [
+          {
+            "name": "count",
+            "label": "生成数量",
+            "placeholder": "10"
+          }
+        ]
+      },
+      {
+        "id": "DT-8",
+        "name": "订单号生成",
+        "tag": "业务",
+        "description": "带时间戳的订单号",
+        "calls": 296,
+        "params": [
+          {
+            "name": "prefix",
+            "label": "前缀",
+            "placeholder": "ORD"
+          },
+          {
+            "name": "count",
+            "label": "生成数量",
+            "placeholder": "10"
+          }
+        ]
+      }
+    ],
+    "dataHistory": [
+      {
+        "id": "DH-1",
+        "tool": "身份证生成",
+        "params": "count=10, region=110101",
+        "result": "110101199003071234",
+        "time": "今天 10:02",
+        "operator": "李娜"
+      },
+      {
+        "id": "DH-2",
+        "tool": "SQL 批量造数",
+        "params": "table=orders, rows=1000",
+        "result": "INSERT 语句 1000 行",
+        "time": "昨天 17:20",
+        "operator": "王磊"
+      },
+      {
+        "id": "DH-3",
+        "tool": "手机号生成",
+        "params": "count=20, carrier=移动",
+        "result": "138****0001 ~ 138****0020",
+        "time": "昨天 15:44",
+        "operator": "陈晨"
+      }
+    ],
+    "skills": [
+      {
+        "id": "SK-1",
+        "name": "需求拆解",
+        "category": "需求",
+        "kind": "Skill",
+        "calls": 1200,
+        "version": "v1.0",
+        "description": "将长需求拆分为可测试功能点",
+        "params": [
+          {
+            "name": "document",
+            "type": "string",
+            "required": true,
+            "desc": "需求文档或文本"
+          },
+          {
+            "name": "granularity",
+            "type": "enum",
+            "required": false,
+            "desc": "拆分粒度：功能/子功能"
+          }
+        ]
+      },
+      {
+        "id": "SK-2",
+        "name": "边界值分析",
+        "category": "用例",
+        "kind": "Skill",
+        "calls": 1063,
+        "version": "v1.1",
+        "description": "自动推导边界与等价类",
+        "params": [
+          {
+            "name": "fields",
+            "type": "json",
+            "required": true,
+            "desc": "字段与取值范围"
+          }
+        ]
+      },
+      {
+        "id": "SK-3",
+        "name": "OpenAPI 生成",
+        "category": "接口",
+        "kind": "Skill",
+        "calls": 926,
+        "version": "v1.2",
+        "description": "需求→接口设计（OpenAPI 3.0）",
+        "params": [
+          {
+            "name": "requirement",
+            "type": "string",
+            "required": true,
+            "desc": "需求文本"
+          },
+          {
+            "name": "style",
+            "type": "enum",
+            "required": false,
+            "desc": "RESTful / RPC"
+          }
+        ]
+      },
+      {
+        "id": "SK-4",
+        "name": "原型生成",
+        "category": "需求",
+        "kind": "Skill",
+        "calls": 789,
+        "version": "v1.0",
+        "description": "需求→页面结构 JSON",
+        "params": [
+          {
+            "name": "requirement",
+            "type": "string",
+            "required": true,
+            "desc": "需求文本"
+          }
+        ]
+      },
+      {
+        "id": "SK-5",
+        "name": "SQL 造数",
+        "category": "数据",
+        "kind": "Skill",
+        "calls": 652,
+        "version": "v1.3",
+        "description": "根据表结构生成测试数据",
+        "params": [
+          {
+            "name": "schema",
+            "type": "string",
+            "required": true,
+            "desc": "DDL 或表结构"
+          },
+          {
+            "name": "rows",
+            "type": "number",
+            "required": false,
+            "desc": "生成行数"
+          }
+        ]
+      },
+      {
+        "id": "SK-6",
+        "name": "日志诊断",
+        "category": "诊断",
+        "kind": "Skill",
+        "calls": 563,
+        "version": "v1.0",
+        "description": "失败日志根因分析",
+        "params": [
+          {
+            "name": "log",
+            "type": "string",
+            "required": true,
+            "desc": "日志内容"
+          }
+        ]
+      },
+      {
+        "id": "SK-7",
+        "name": "GitHub MCP",
+        "category": "接口",
+        "kind": "MCP",
+        "calls": 421,
+        "version": "v2.1",
+        "description": "代码仓库读写、PR 查询",
+        "params": [
+          {
+            "name": "repo",
+            "type": "string",
+            "required": true,
+            "desc": "owner/repo"
+          },
+          {
+            "name": "token",
+            "type": "secret",
+            "required": true,
+            "desc": "访问令牌"
+          }
+        ]
+      },
+      {
+        "id": "SK-8",
+        "name": "Jira MCP",
+        "category": "诊断",
+        "kind": "MCP",
+        "calls": 318,
+        "version": "v1.4",
+        "description": "缺陷同步与状态流转",
+        "params": [
+          {
+            "name": "project",
+            "type": "string",
+            "required": true,
+            "desc": "Jira 项目 Key"
+          }
+        ]
+      },
+      {
+        "id": "SK-9",
+        "name": "Postgres MCP",
+        "category": "数据",
+        "kind": "MCP",
+        "calls": 274,
+        "version": "v1.2",
+        "description": "只读 SQL 查询",
+        "params": [
+          {
+            "name": "dsn",
+            "type": "secret",
+            "required": true,
+            "desc": "数据库连接串"
+          },
+          {
+            "name": "readonly",
+            "type": "boolean",
+            "required": false,
+            "desc": "仅只读"
+          }
+        ]
+      },
+      {
+        "id": "SK-10",
+        "name": "Browser MCP",
+        "category": "接口",
+        "kind": "MCP",
+        "calls": 198,
+        "version": "v1.0",
+        "description": "无头浏览器操作",
+        "params": [
+          {
+            "name": "headless",
+            "type": "boolean",
+            "required": false,
+            "desc": "是否无头运行"
+          }
+        ]
+      }
+    ],
+    "kbs": [
+      {
+        "id": "KB-1",
+        "name": "业务规则库",
+        "description": "会员、订单、优惠券业务规则",
+        "docs": 12,
+        "chunks": 846,
+        "embedding": "bge-m3",
+        "status": "已完成",
+        "updatedAt": "10-23 18:02"
+      },
+      {
+        "id": "KB-2",
+        "name": "接口文档库",
+        "description": "内部服务 OpenAPI 与字段说明",
+        "docs": 34,
+        "chunks": 2104,
+        "embedding": "text-embedding-3",
+        "status": "已完成",
+        "updatedAt": "10-24 09:30"
+      }
+    ],
+    "kbDocs": [
+      {
+        "id": "DOC-1",
+        "kbId": "KB-1",
+        "filename": "业务规则说明.md",
+        "size": "42KB",
+        "parseStatus": "已解析",
+        "chunks": 36,
+        "uploadedAt": "10-23 18:02"
+      },
+      {
+        "id": "DOC-2",
+        "kbId": "KB-1",
+        "filename": "会员权益手册.pdf",
+        "size": "1.8MB",
+        "parseStatus": "已解析",
+        "chunks": 128,
+        "uploadedAt": "10-22 14:11"
+      },
+      {
+        "id": "DOC-3",
+        "kbId": "KB-1",
+        "filename": "优惠券叠加规则.docx",
+        "size": "620KB",
+        "parseStatus": "解析中",
+        "chunks": 0,
+        "uploadedAt": "今天 09:12"
+      },
+      {
+        "id": "DOC-4",
+        "kbId": "KB-2",
+        "filename": "member-api.yaml",
+        "size": "118KB",
+        "parseStatus": "已解析",
+        "chunks": 64,
+        "uploadedAt": "10-24 09:30"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "CV-1",
+        "title": "会员中心用例设计",
+        "updatedAt": "今天 10:24",
+        "messages": [
+          {
+            "id": "M-1",
+            "role": "assistant",
+            "content": "你好，我是项目测试助手，已接入「电商核心系统」知识库。可以让我基于需求生成用例、设计接口或分析失败日志。",
+            "citations": [],
+            "toolCalls": []
+          }
+        ]
+      },
+      {
+        "id": "CV-2",
+        "title": "支付回调排查",
+        "updatedAt": "昨天 16:40",
+        "messages": []
+      },
+      {
+        "id": "CV-3",
+        "title": "新会话",
+        "updatedAt": "昨天 09:12",
+        "messages": []
+      }
+    ],
+    "chatConfig": {
+      "model": "GPT-4o",
+      "kbIds": [
+        "KB-1"
+      ],
+      "systemPrompt": "你是资深测试架构师，回答需给出可执行的步骤与覆盖维度。"
+    },
+    "taskHistory": [
+      {
+        "id": "T-9001",
+        "name": "原型生成 · 会员中心",
+        "type": "生成",
+        "progress": 100,
+        "status": "已完成",
+        "trigger": "李娜",
+        "startedAt": "今天 10:20",
+        "finishedAt": "今天 10:21",
+        "logs": [
+          "[10:20:01] 任务创建",
+          "[10:20:02] 检索知识库 3 篇",
+          "[10:20:18] 生成页面结构",
+          "[10:21:02] 校验通过",
+          "[10:21:03] 任务完成"
+        ]
+      },
+      {
+        "id": "T-9002",
+        "name": "夜间全量回归",
+        "type": "测试执行",
+        "progress": 100,
+        "status": "已完成",
+        "trigger": "系统",
+        "startedAt": "今天 02:00",
+        "finishedAt": "今天 02:04",
+        "logs": [
+          "[02:00:00] 加载套件 320 条",
+          "[02:04:12] 全部通过"
+        ]
+      },
+      {
+        "id": "T-9003",
+        "name": "下单流程冒烟",
+        "type": "WebUI",
+        "progress": 100,
+        "status": "失败",
+        "trigger": "王磊",
+        "startedAt": "今天 09:12",
+        "finishedAt": "今天 09:13",
+        "logs": [
+          "[09:12:01] Chromium 启动",
+          "[09:12:30] 步骤 3 失败：结算按钮不可见",
+          "[09:12:48] 已保存截图与视频"
+        ]
+      }
+    ],
+    "versions": [
+      {
+        "id": "V-1",
+        "name": "会员中心 API",
+        "kind": "接口设计",
+        "version": "v1",
+        "createdAt": "10-21 15:20",
+        "content": "openapi: 3.0.3\ninfo:\n  title: 会员中心 API\n  version: 0.9.0\npaths:\n  /api/v1/member/profile:\n    get:\n      summary: 获取会员信息\n  /api/v1/member/points:\n    get:\n      summary: 积分明细"
+      },
+      {
+        "id": "V-2",
+        "name": "会员中心 API",
+        "kind": "接口设计",
+        "version": "v2",
+        "createdAt": "10-23 16:40",
+        "content": "openapi: 3.0.3\ninfo:\n  title: 会员中心 API\n  version: 1.0.0\npaths:\n  /api/v1/member/profile:\n    get:\n      summary: 获取会员信息\n      responses:\n        '200':\n          description: OK\n  /api/v1/member/points:\n    get:\n      summary: 积分明细\n  /api/v1/member/benefits/{id}/claim:\n    post:\n      summary: 领取权益"
+      },
+      {
+        "id": "V-3",
+        "name": "会员中心原型",
+        "kind": "原型结构",
+        "version": "v1",
+        "createdAt": "10-21 15:30",
+        "content": "{\n  \"page\": \"会员中心\",\n  \"sections\": [\n    {\n      \"name\": \"会员卡片\",\n      \"items\": [\n        \"等级\",\n        \"积分\"\n      ]\n    },\n    {\n      \"name\": \"权益列表\",\n      \"items\": [\n        \"免运费\",\n        \"生日礼\"\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "V-4",
+        "name": "会员中心原型",
+        "kind": "原型结构",
+        "version": "v2",
+        "createdAt": "10-23 16:40",
+        "content": "{\n  \"page\": \"会员中心\",\n  \"flow\": \"首页 → 会员中心 → 权益领取 / 订单入口\",\n  \"sections\": [\n    {\n      \"name\": \"顶部导航\",\n      \"items\": [\n        \"Logo\",\n        \"搜索\",\n        \"头像\"\n      ]\n    },\n    {\n      \"name\": \"会员卡片\",\n      \"items\": [\n        \"等级\",\n        \"积分\",\n        \"成长值进度\"\n      ]\n    },\n    {\n      \"name\": \"权益列表\",\n      \"items\": [\n        \"免运费\",\n        \"生日礼\",\n        \"专属客服\",\n        \"折扣券\"\n      ]\n    },\n    {\n      \"name\": \"订单入口\",\n      \"items\": [\n        \"待付款\",\n        \"待发货\",\n        \"待收货\",\n        \"售后\"\n      ]\n    }\n  ]\n}"
+      },
+      {
+        "id": "V-5",
+        "name": "下单流程脚本",
+        "kind": "用例脚本",
+        "version": "v1",
+        "createdAt": "10-22 18:00",
+        "content": "from pages.login import LoginPage\n\n\ndef test_checkout(page):\n    LoginPage(page).login(\"demo\", \"demo123\")\n    page.click(\".checkout-btn\")"
+      },
+      {
+        "id": "V-6",
+        "name": "下单流程脚本",
+        "kind": "用例脚本",
+        "version": "v2",
+        "createdAt": "10-23 18:20",
+        "content": "from pages.login import LoginPage\nfrom pages.cart import CartPage\n\n\ndef test_checkout(page):\n    LoginPage(page).login(\"demo\", \"demo123\")\n    cart = CartPage(page)\n    cart.add_first_item()\n    cart.checkout()\n    assert page.locator(\".order-success\").is_visible()"
+      }
+    ],
+    "providers": [
+      {
+        "id": "MP-1",
+        "name": "OpenAI",
+        "models": "gpt-4o, gpt-4o-mini",
+        "apiKey": "sk-****a3f2",
+        "baseUrl": "https://api.openai.com/v1",
+        "status": "正常",
+        "latencyMs": 320
+      },
+      {
+        "id": "MP-2",
+        "name": "Anthropic",
+        "models": "claude-3.5-sonnet",
+        "apiKey": "sk-ant-****91c",
+        "baseUrl": "https://api.anthropic.com",
+        "status": "正常",
+        "latencyMs": 410
+      },
+      {
+        "id": "MP-3",
+        "name": "DeepSeek",
+        "models": "deepseek-v3, deepseek-r1",
+        "apiKey": "sk-****7d10",
+        "baseUrl": "https://api.deepseek.com",
+        "status": "正常",
+        "latencyMs": 280
+      },
+      {
+        "id": "MP-4",
+        "name": "Azure OpenAI",
+        "models": "gpt-4o (东亚)",
+        "apiKey": "****e21b",
+        "baseUrl": "https://demo.openai.azure.com",
+        "status": "异常",
+        "latencyMs": 0
+      }
+    ],
+    "routing": [
+      {
+        "id": "RR-1",
+        "taskType": "用例生成",
+        "primary": "GPT-4o",
+        "fallback": "DeepSeek-V3",
+        "enabled": true
+      },
+      {
+        "id": "RR-2",
+        "taskType": "接口设计",
+        "primary": "Claude 3.5 Sonnet",
+        "fallback": "GPT-4o",
+        "enabled": true
+      },
+      {
+        "id": "RR-3",
+        "taskType": "原型生成",
+        "primary": "Claude 3.5 Sonnet",
+        "fallback": "GPT-4o",
+        "enabled": true
+      },
+      {
+        "id": "RR-4",
+        "taskType": "日志诊断",
+        "primary": "DeepSeek-V3",
+        "fallback": "GPT-4o",
+        "enabled": true
+      },
+      {
+        "id": "RR-5",
+        "taskType": "对话助手",
+        "primary": "GPT-4o",
+        "fallback": "Qwen2.5-72B",
+        "enabled": false
+      }
+    ],
+    "platformUsers": [
+      {
+        "id": "U-001",
+        "name": "张伟",
+        "dept": "质量部",
+        "role": "超级管理员",
+        "lastLogin": "今天 09:01",
+        "status": "启用"
+      },
+      {
+        "id": "U-002",
+        "name": "李娜",
+        "dept": "研发一部",
+        "role": "普通用户",
+        "lastLogin": "昨天",
+        "status": "启用"
+      },
+      {
+        "id": "U-003",
+        "name": "王磊",
+        "dept": "质量部",
+        "role": "普通用户",
+        "lastLogin": "今天 09:58",
+        "status": "启用"
+      }
+    ],
+    "health": [
+      {
+        "name": "PostgreSQL",
+        "status": "正常",
+        "metric": "3ms",
+        "detail": "连接池 12/50，慢查询 0"
+      },
+      {
+        "name": "Redis",
+        "status": "正常",
+        "metric": "1ms",
+        "detail": "内存 1.2GB / 4GB，命中率 98.6%"
+      },
+      {
+        "name": "MinIO",
+        "status": "正常",
+        "metric": "8ms",
+        "detail": "可用空间 218GB"
+      },
+      {
+        "name": "Celery Worker",
+        "status": "正常",
+        "metric": "6/6",
+        "detail": "队列积压 0"
+      },
+      {
+        "name": "向量库 Milvus",
+        "status": "正常",
+        "metric": "12ms",
+        "detail": "collection 2 个"
+      },
+      {
+        "name": "Playwright 节点",
+        "status": "警告",
+        "metric": "2/3",
+        "detail": "node-2 浏览器版本不匹配"
+      },
+      {
+        "name": "设备池",
+        "status": "异常",
+        "metric": "8/10",
+        "detail": "Mi 13、Pixel 4 离线"
+      },
+      {
+        "name": "LLM 网关",
+        "status": "正常",
+        "metric": "210ms",
+        "detail": "近 1h 错误率 0.4%"
+      }
+    ],
+    "channels": [
+      {
+        "id": "NC-1",
+        "name": "测试群",
+        "type": "飞书 Webhook",
+        "event": "任务失败",
+        "target": "https://open.feishu.cn/…/hook/9f2",
+        "status": "启用"
+      },
+      {
+        "id": "NC-2",
+        "name": "QA 邮件组",
+        "type": "邮件",
+        "event": "日报",
+        "target": "qa-group@corp.com",
+        "status": "启用"
+      }
+    ],
+    "audits": [
+      {
+        "id": "AL-1",
+        "time": "10:24:11",
+        "operator": "李娜",
+        "action": "触发生成",
+        "target": "原型 · 会员中心",
+        "tokens": "12,480",
+        "ip": "10.2.3.14",
+        "detail": {
+          "模型": "Claude 3.5 Sonnet",
+          "工作流": "需求→原型",
+          "耗时": "42s"
+        }
+      },
+      {
+        "id": "AL-2",
+        "time": "09:58:02",
+        "operator": "王磊",
+        "action": "导出产物",
+        "target": "OpenAPI YAML",
+        "tokens": "-",
+        "ip": "10.2.3.21",
+        "detail": {
+          "文件": "member-api.yaml",
+          "大小": "118KB"
+        }
+      },
+      {
+        "id": "AL-3",
+        "time": "09:12:40",
+        "operator": "张伟",
+        "action": "修改模型配置",
+        "target": "Azure OpenAI",
+        "tokens": "-",
+        "ip": "10.2.3.8",
+        "detail": {
+          "字段": "baseUrl",
+          "旧值": "https://old.openai.azure.com",
+          "新值": "https://demo.openai.azure.com"
+        }
+      }
+    ],
+    "profile": {
+      "id": "U-001",
+      "name": "张伟",
+      "email": "zhangwei@corp.com",
+      "phone": "138****0001",
+      "title": "测试架构师",
+      "dept": "质量部",
+      "role": "管理员",
+      "bio": "负责测试平台建设与质量度量体系。"
+    },
+    "assets": [
+      {
+        "id": "AS-1",
+        "name": "会员中心原型.json",
+        "type": "原型",
+        "project": "电商核心系统",
+        "size": "18KB",
+        "createdAt": "今天 10:21"
+      },
+      {
+        "id": "AS-2",
+        "name": "member-api.yaml",
+        "type": "接口设计",
+        "project": "电商核心系统",
+        "size": "118KB",
+        "createdAt": "10-23 16:42"
+      },
+      {
+        "id": "AS-3",
+        "name": "夜间全量 #128 报告",
+        "type": "测试报告",
+        "project": "支付中台",
+        "size": "2.4MB",
+        "createdAt": "今天 02:04"
+      }
+    ],
+    "apiKeys": [
+      {
+        "id": "AK-1",
+        "name": "CI 流水线",
+        "prefix": "ast_live_9f2a",
+        "createdAt": "10-01 10:00",
+        "lastUsed": "今天 08:12",
+        "status": "启用"
+      },
+      {
+        "id": "AK-2",
+        "name": "本地调试",
+        "prefix": "ast_test_31bc",
+        "createdAt": "09-18 14:20",
+        "lastUsed": "昨天",
+        "status": "停用"
+      }
+    ],
+    "workflows": [
+      {
+        "id": "WF-1",
+        "name": "需求→原型",
+        "description": "检索业务规则后生成页面结构并校验",
+        "updatedAt": "10-23 16:40",
+        "nodes": [
+          {
+            "id": 1,
+            "type": "开始",
+            "label": "输入：需求文档",
+            "x": 30,
+            "y": 120,
+            "config": {}
+          },
+          {
+            "id": 2,
+            "type": "知识库检索",
+            "label": "检索业务规则",
+            "x": 220,
+            "y": 120,
+            "config": {
+              "kb": "业务规则库",
+              "topK": "5"
+            }
+          },
+          {
+            "id": 3,
+            "type": "LLM 调用",
+            "label": "生成页面结构",
+            "x": 410,
+            "y": 120,
+            "config": {
+              "model": "Claude 3.5 Sonnet",
+              "prompt": "输出页面结构 JSON"
+            }
+          },
+          {
+            "id": 4,
+            "type": "代码节点",
+            "label": "Schema 校验",
+            "x": 600,
+            "y": 120,
+            "config": {
+              "language": "python"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "dashboard": {
+    "stats": [
+      {
+        "label": "我的项目",
+        "value": 3
+      },
+      {
+        "label": "本周生成用例",
+        "value": 486,
+        "delta": "18%"
+      },
+      {
+        "label": "测试通过率",
+        "value": "92.4%",
+        "delta": "2.1%"
+      },
+      {
+        "label": "本月 Token 消耗",
+        "value": "12.8M",
+        "delta": "24%",
+        "up": false
+      }
+    ],
+    "tokenTrend": [
+      1.2,
+      1.8,
+      1.5,
+      2.4,
+      2.1,
+      1.1,
+      2.7
+    ],
+    "alerts": [
+      {
+        "level": "高危",
+        "text": "支付中台 · 接口回归失败率 18%"
+      },
+      {
+        "level": "警告",
+        "text": "Token 配额已用 82%"
+      },
+      {
+        "level": "警告",
+        "text": "设备池 2 台设备离线"
+      }
+    ],
+    "todos": [
+      "评审：登录模块 12 条用例",
+      "确认：订单接口设计 v3",
+      "处理：夜间回归 3 条失败"
+    ],
+    "activities": [
+      {
+        "user": "李娜",
+        "action": "生成了原型图 · 会员中心",
+        "time": "10 分钟前"
+      },
+      {
+        "user": "王磊",
+        "action": "执行 API 套件 · 支付回调",
+        "time": "1 小时前"
+      },
+      {
+        "user": "赵敏",
+        "action": "上传知识库文档 3 份",
+        "time": "昨天"
+      }
+    ]
+  }
+}

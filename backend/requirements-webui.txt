@@ -1,0 +1,4 @@
+# Optional Phase 3 UI evidence dependency.
+# Install with: .venv/Scripts/python -m pip install -r requirements-webui.txt
+# Then: .venv/Scripts/python -m playwright install chromium
+playwright>=1.50

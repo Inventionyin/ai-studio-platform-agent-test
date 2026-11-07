@@ -1,0 +1,14 @@
+{
+  "baseUrl": "http://127.0.0.1:5174",
+  "phone": "13900009999",
+  "message": "推荐一个手机，预算两千左右",
+  "startedAt": "2026-11-07T20:46:20.472952",
+  "screenshots": [
+    "D:\\developertest\\ai-studio-platform-main\\docs\\evidence\\shangpin-ui\\20261107-204620\\01-chat-open.png",
+    "D:\\developertest\\ai-studio-platform-main\\docs\\evidence\\shangpin-ui\\20261107-204620\\02-answer.png"
+  ],
+  "video": "D:\\developertest\\ai-studio-platform-main\\docs\\evidence\\shangpin-ui\\20261107-204620\\page@2b6f39aabbe4bffb7800db068ba22cc4.webm",
+  "answer": "两千左右，这次你没限定品牌，我给你三个方向，按需求选： ## 1. 性能优先：Redmi Turbo 4（约1999元） - 天玑8400-Ultra，跑分高，游戏稳 - 6550mAh + 90W，续航很顶 - 1.5K 高刷直屏 - **适合**：打游戏、要性能续航均衡 ## 2. 影像/质感优先：iQOO Z9 Turbo（约2000元） - 骁龙8s Gen3，性能同样强 - 6000mAh + 80W - 屏幕和做工不错 - **适合**：想要一线芯 + 日常流畅 ## 3. 想碰旗舰芯：Redmi K80（约2200-2400元，略超预算） - 骁龙8 Gen3，这个价位能摸到的旗舰处理器 - 2K 屏、大电池 - **适合**：预算能松一点、追求长期耐用性能 --- **一句话建议**： - 严格 2000 内、要均衡 → **Redmi Turbo 4** - 能加到 2300 左右、想要旗舰芯 → **K80** 你更看重**游戏性能**、**拍照**还是**续航**？说一个，我帮你锁定一台。\niPhone 15 Pro 128G\nA17 Pro 芯片，旗舰性能\n¥7999.00 起\n1280 人付款\niPhone 15 128G\nA16 芯片，性能均衡\n¥5999.00 起\n0 人付款\nXiaomi 14 Pro 12+256G\n徕卡光学，旗舰影像\n¥4999.00 起\n860 人付款\nAI 生成",
+  "consoleErrors": [],
+  "finishedAt": "2026-11-07T20:46:37.158241"
+}
