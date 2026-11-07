@@ -66,8 +66,9 @@ function Admin({ children }: { children: ReactNode }) {
 }
 
 export function AppRouter() {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/accept-invite" element={<AcceptInvite />} />
