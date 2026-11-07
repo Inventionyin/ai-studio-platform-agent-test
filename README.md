@@ -52,6 +52,16 @@ pnpm install
 pnpm dev               # http://localhost:8443，/api 代理到 8000
 ```
 
+## 本地一键部署
+
+```bash
+cd backend && cp .env.example .env   # 首次填写配置
+cd ..
+bash scripts/deploy_local.sh
+```
+
+启动 PostgreSQL、MinIO、RabbitMQ、平台后端、Mock Agent、前端；可选通过 `SHANGPIVOT_HOME` 启动尚品汇 graph。详见 `docs/本地部署.md`。
+
 ## 导入本地项目
 
 ```bash
