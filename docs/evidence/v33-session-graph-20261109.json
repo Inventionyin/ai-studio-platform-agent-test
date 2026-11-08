@@ -1,0 +1,73 @@
+{
+  "summary": {
+    "target": "AT-CA66D70EFB",
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "judged": 0,
+    "judgeAverage": null,
+    "generatedAt": "2026-11-09 00:32:16"
+  },
+  "results": [
+    {
+      "sourceId": "S01-context-specs",
+      "caseId": "AC-37A856AA7D",
+      "runId": "AR-4A682CC998",
+      "status": "pass",
+      "latencyMs": 3096,
+      "answer": "您问的是《Redmi K70 12+256G》。可选规格：\n【规格1】Redmi K70 12+256G，价格 2299 元，库存 300\n未列出的参数可进商品详情页查看。",
+      "judgeScore": null,
+      "judgeVerdict": null,
+      "judgeReasons": "",
+      "elapsedSec": 3.2
+    },
+    {
+      "sourceId": "S02-context-addcart",
+      "caseId": "AC-6FD2774A49",
+      "runId": "AR-540BCEE7C3",
+      "status": "pass",
+      "latencyMs": 2929,
+      "answer": "已为您加入购物车：商品「落地台灯」，规格「落地台灯」，单价 199 元，本次加入 1 件。可到购物车结算～",
+      "judgeScore": null,
+      "judgeVerdict": null,
+      "judgeReasons": "",
+      "elapsedSec": 3.2
+    },
+    {
+      "sourceId": "S03-context-switch",
+      "caseId": "AC-AEB93B0DD6",
+      "runId": "AR-5FEF9C364A",
+      "status": "pass",
+      "latencyMs": 2566,
+      "answer": "《iPhone 15》目前有货：容量 128GB，颜色 蓝色，价格 5999 元，库存 120。其他规格可回复“规格”查看。",
+      "judgeScore": null,
+      "judgeVerdict": null,
+      "judgeReasons": "",
+      "elapsedSec": 2.8
+    },
+    {
+      "sourceId": "S04-context-price",
+      "caseId": "AC-990032B056",
+      "runId": "AR-2AF0C9673C",
+      "status": "pass",
+      "latencyMs": 7881,
+      "answer": "为您找到以下商品：\n【商品1】iPhone 15 128G（A16 芯片，性能均衡），价格 5999 元起\n【商品2】iPhone 15 Pro 128G（A17 Pro 芯片，旗舰性能），价格 7999 元起\n需要我帮您对比，或直接加入购物车吗？",
+      "judgeScore": null,
+      "judgeVerdict": null,
+      "judgeReasons": "",
+      "elapsedSec": 8.1
+    },
+    {
+      "sourceId": "S05-context-ambiguous",
+      "caseId": "AC-C1B063787D",
+      "runId": "AR-F02B32C825",
+      "status": "pass",
+      "latencyMs": 2783,
+      "answer": "您指的是哪一款？请回复序号：\n1. Redmi K70 12+256G\n2. vivo X100\n3. iPhone 15 128G\n以上均为此前推荐过的商品；如需更具体的规格或价格，请先确认款式。",
+      "judgeScore": null,
+      "judgeVerdict": null,
+      "judgeReasons": "",
+      "elapsedSec": 2.9
+    }
+  ]
+}
