@@ -703,6 +703,9 @@ export interface AgentTargetConfig {
   throttleMs?: number;
   rateLimitWaitSeconds?: number;
   cartCleanup?: boolean;
+  autoConfirmActions?: boolean;
+  testMode?: boolean;
+  testSource?: "ai" | "human";
   engine?: "legacy" | "graph";
   adminUsername?: string;
   adminPassword?: string;
