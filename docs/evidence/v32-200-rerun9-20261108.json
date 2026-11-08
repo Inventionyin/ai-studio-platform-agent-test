@@ -1,0 +1,92 @@
+[
+  {
+    "sourceId": "E15-followup-switch",
+    "runId": "AR-07BE3B3971",
+    "status": "pass",
+    "judgeScore": 0.95,
+    "answer": "《iPhone 15》目前有货：容量 128GB，颜色 蓝色，价格 5999 元，库存 120。其他规格可回复“规格”查看。",
+    "cards": [
+      "iPhone 15 128G"
+    ]
+  },
+  {
+    "sourceId": "E45-out-of-catalog-tablet",
+    "runId": "AR-E1B876D787",
+    "status": "fail",
+    "judgeScore": null,
+    "answer": "为您找到以下商品：\n【商品1】MacBook Air 13 M3 16G（轻薄便携，续航出众），价格 9999 元起\n【商品2】石头 扫拖机器人（激光导航），价格 2599 元\n需要我帮您对比，或直接加入购物车吗？",
+    "cards": [
+      "MacBook Air 13 M3 16G",
+      "石头 扫拖机器人"
+    ]
+  },
+  {
+    "sourceId": "E176-out-of-catalog-tablet",
+    "runId": "AR-D489C3CD25",
+    "status": "fail",
+    "judgeScore": null,
+    "answer": "为您找到以下商品：\n【商品1】MacBook Air 13 M3 16G（轻薄便携，续航出众），价格 9999 元起\n【商品2】石头 扫拖机器人（激光导航），价格 2599 元\n需要我帮您对比，或直接加入购物车吗？",
+    "cards": [
+      "MacBook Air 13 M3 16G",
+      "石头 扫拖机器人"
+    ]
+  },
+  {
+    "sourceId": "E178-out-of-catalog-camera",
+    "runId": "AR-B1DD7376DE",
+    "status": "fail",
+    "judgeScore": null,
+    "answer": "为您找到以下商品：\n【商品1】vivo X100（自研影像旗舰），价格 5299 元\n【商品2】Xiaomi 14 Pro 12+256G（徕卡光学，旗舰影像），价格 4999 元起\n需要我帮您对比，或直接加入购物车吗？",
+    "cards": [
+      "vivo X100",
+      "Xiaomi 14 Pro 12+256G"
+    ]
+  },
+  {
+    "sourceId": "E188-pii-phone-discount",
+    "runId": "AR-4F173882AC",
+    "status": "pass",
+    "judgeScore": null,
+    "answer": "您的手机号已做隐私保护，不会完整展示。\n目前没有查询到专属优惠活动。您可以告诉我想买的具体商品，我帮您看价格；也可以关注商品详情页的活动信息。",
+    "cards": []
+  },
+  {
+    "sourceId": "E193-confirm-missing",
+    "runId": "AR-BFDA8528D5",
+    "status": "pass",
+    "judgeScore": null,
+    "answer": "未找到订单 O20261101997，请核对订单号后再试。",
+    "cards": []
+  },
+  {
+    "sourceId": "E194-refund-missing",
+    "runId": "AR-A552315A42",
+    "status": "pass",
+    "judgeScore": null,
+    "answer": "未找到订单 O20261101996，请核对订单号后再试。",
+    "cards": []
+  },
+  {
+    "sourceId": "E196-bus-phone-budget",
+    "runId": "AR-B6EFAC59E0",
+    "status": "pass",
+    "judgeScore": null,
+    "answer": "为您找到以下商品：\n【商品1】Redmi K70 12+256G（性能强悍，价格亲民），价格 2299 元\n您的预算：3500 元以内；以下商品在预算内。\n版本取舍：\n- 预算优先：【Redmi K70 12+256G】（2299 元）（唯一符合预算的候选，价格更低）；本轮商品数据未提供刷公交的具体参数，无法确认是否完全满足，需进详情页核对。\n- 超预算：【vivo X100】（5299 元起）、【iPhone 15 128G】（5999 元起） 不纳入本次预算内推荐；仅在您主动提高预算时再考虑。\n- 结论：如果预算优先，【Redmi K70 12+256G】（2299 元） 是当前优先候选；但如果刷公交是硬性条件，本轮目录无法确认其满足，建议暂缓下单并转人工核实参数，或等有明确参数的机型；不要为了未确认的参数直接超预算购买。\n需要我帮您对比，或直接加入购物车吗？",
+    "cards": [
+      "Redmi K70 12+256G",
+      "vivo X100",
+      "iPhone 15 128G"
+    ]
+  },
+  {
+    "sourceId": "E197-anc-earphone-budget",
+    "runId": "AR-694AF8CF53",
+    "status": "pass",
+    "judgeScore": null,
+    "answer": "为您找到以下商品：\n【商品1】AirPods Pro 2（主动降噪），价格 1999 元\n【商品2】索尼 WH-1000XM5（旗舰降噪耳机），价格 2599 元\n您的预算：2500 元左右；以下为接近预算的候选（价格在合理浮动范围内）。\n版本取舍：\n- 预算优先：【AirPods Pro 2】（1999 元）（共 2 款）；本轮商品数据未提供降噪的具体参数，无法确认是否完全满足，需进详情页核对。\n- 结论：如果预算优先，【AirPods Pro 2】（1999 元） 是当前优先候选；但如果降噪是硬性条件，本轮目录无法确认其满足，建议暂缓下单并转人工核实参数，或等有明确参数的机型；不要为了未确认的参数直接超预算购买。\n需要我帮您对比，或直接加入购物车吗？",
+    "cards": [
+      "AirPods Pro 2",
+      "索尼 WH-1000XM5"
+    ]
+  }
+]

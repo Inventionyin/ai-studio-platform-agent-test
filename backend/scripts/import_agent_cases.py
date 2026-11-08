@@ -70,15 +70,21 @@ def source_id(case: dict[str, Any]) -> str:
 
 
 def judge_config(case: dict[str, Any]) -> dict[str, Any]:
+    expected = case.get("expected") if isinstance(case.get("expected"), dict) else {}
+    nested = expected.get("judge") if isinstance(expected.get("judge"), dict) else {}
     raw = case.get("judge")
     if isinstance(raw, dict):
-        enabled = bool(raw.get("enabled", True))
-        threshold = raw.get("threshold", case.get("judgeThreshold", 0.7))
-        steps = raw.get("steps", case.get("evaluationSteps") or [])
+        enabled = bool(raw.get("enabled", nested.get("enabled", True)))
+        threshold = raw.get("threshold", case.get("judgeThreshold", nested.get("threshold", 0.7)))
+        steps = raw.get("steps", case.get("evaluationSteps") or nested.get("steps") or [])
+    elif raw is not None:
+        steps = case.get("evaluationSteps") or nested.get("steps") or []
+        threshold = case.get("judgeThreshold", nested.get("threshold", 0.7))
+        enabled = bool(raw)
     else:
-        steps = case.get("evaluationSteps") or []
-        threshold = case.get("judgeThreshold", 0.7)
-        enabled = bool(raw) if raw is not None else bool(steps)
+        steps = case.get("evaluationSteps") or nested.get("steps") or []
+        threshold = case.get("judgeThreshold", nested.get("threshold", 0.7))
+        enabled = bool(nested.get("enabled", bool(steps)))
     try:
         threshold = float(threshold)
     except (TypeError, ValueError):
@@ -152,6 +158,7 @@ def case_payload(case: dict[str, Any], target_id: str, dataset_version: str) -> 
         "command": turns[0],
         "turns": turns,
         "payload": {
+            **dict(case.get("payload") or {}),
             "sourceId": sid,
             "businessRule": str(case.get("businessRule") or ""),
             "datasetVersion": dataset_version,
