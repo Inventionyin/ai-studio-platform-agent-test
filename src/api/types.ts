@@ -682,7 +682,7 @@ export interface AgentVerifyResult {
 /* ============ Agent 全链路追踪 ============ */
 export type AgentAdapterType = "http" | "cli" | "webui" | "app" | "shangpin";
 export type AgentInputType = "text" | "json" | "cli";
-export type AgentRunStatus = "pending" | "running" | "pass" | "fail" | "needs_review" | "error";
+export type AgentRunStatus = "pending" | "running" | "pass" | "fail" | "needs_review" | "error" | "observed";
 export type TraceSpanType = "command" | "agent" | "llm" | "tool" | "retrieval" | "final" | "judge" | "ui" | "assertion" | "sse";
 export type TraceSpanStatus = "ok" | "error" | "skipped";
 export type EvaluatorType = "rule" | "llm" | "human";
@@ -778,7 +778,17 @@ export interface AgentRun {
   id: string;
   projectId: string;
   targetId: string;
-  caseId: string;
+  caseId: string | null;
+  conversationId?: string | null;
+  sourceType?: "ai_test" | "human_manual" | "production" | string;
+  environment?: string;
+  externalSessionId?: string;
+  externalRunId?: string;
+  datasetVersion?: string;
+  isTest?: boolean;
+  piiMasked?: boolean;
+  metadata?: Record<string, unknown>;
+  ingestedAt?: string | null;
   traceId: string;
   status: AgentRunStatus;
   input: Record<string, unknown> | null;
@@ -876,6 +886,38 @@ export interface RunDetail {
   spans: TraceSpan[];
   artifacts: TraceArtifact[];
   evaluations: RunEvaluation[];
+}
+
+export interface AgentConversation {
+  id: string;
+  projectId: string;
+  targetId: string;
+  sourceType: "human_manual" | "production" | string;
+  environment: string;
+  externalSessionId: string;
+  customerRef: string;
+  channel: string;
+  status: string;
+  messageCount: number;
+  isTest: boolean;
+  piiMasked: boolean;
+  metadata: Record<string, unknown>;
+  startedAt: string | null;
+  endedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AgentConversationDetail {
+  conversation: AgentConversation;
+  runs: RunDetail[];
+}
+
+export interface AgentDataSummary {
+  testRuns: number;
+  manualConversations: number;
+  productionConversations: number;
+  failedTestRuns: number;
 }
 
 export interface AgentTestSummary {

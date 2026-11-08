@@ -49,15 +49,23 @@ def get_doc(name: str, _: str = Depends(project_scope)) -> dict[str, Any]:
 def summary(pid: str = Depends(project_scope), db: Session = Depends(get_db)) -> dict[str, Any]:
     targets = db.scalar(select(func.count(AgentTarget.id)).where(AgentTarget.project_id == pid)) or 0
     cases = db.scalar(select(func.count(AgentTestCase.id)).where(AgentTestCase.project_id == pid)) or 0
-    runs = db.scalar(select(func.count(AgentRun.id)).where(AgentRun.project_id == pid)) or 0
+    runs = db.scalar(select(func.count(AgentRun.id)).where(
+        AgentRun.project_id == pid, AgentRun.source_type == "ai_test"
+    )) or 0
     passed = db.scalar(
-        select(func.count(AgentRun.id)).where(AgentRun.project_id == pid, AgentRun.status == "pass")
+        select(func.count(AgentRun.id)).where(
+            AgentRun.project_id == pid, AgentRun.source_type == "ai_test", AgentRun.status == "pass"
+        )
     ) or 0
     failed = db.scalar(
-        select(func.count(AgentRun.id)).where(AgentRun.project_id == pid, AgentRun.status == "fail")
+        select(func.count(AgentRun.id)).where(
+            AgentRun.project_id == pid, AgentRun.source_type == "ai_test", AgentRun.status == "fail"
+        )
     ) or 0
     needs_review = db.scalar(
-        select(func.count(AgentRun.id)).where(AgentRun.project_id == pid, AgentRun.status == "needs_review")
+        select(func.count(AgentRun.id)).where(
+            AgentRun.project_id == pid, AgentRun.source_type == "ai_test", AgentRun.status == "needs_review"
+        )
     ) or 0
     fixes = db.scalar(select(func.count(FixRecord.id)).where(FixRecord.project_id == pid)) or 0
     directory = docs_dir()

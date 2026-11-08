@@ -18,7 +18,11 @@ export function AgentRunPanelV2({ selectedRunId, onSelectRun, onOpenTrace }: {
 }) {
   const { toast } = useApp();
   const { data: cases } = useAsync(() => agentTestApi.cases(), [], [] as AgentCase[]);
-  const { data: runs, loading, reload } = useAsync(() => agentTestApi.runs(), [], [] as AgentRun[]);
+  const { data: runs, loading, reload } = useAsync(
+    () => agentTestApi.runs({ sourceType: "ai_test" }),
+    [],
+    [] as AgentRun[],
+  );
   const [caseId, setCaseId] = useState("");
   const [running, setRunning] = useState(false);
 
@@ -27,7 +31,7 @@ export function AgentRunPanelV2({ selectedRunId, onSelectRun, onOpenTrace }: {
     if (!cases.some((item) => item.id === caseId)) setCaseId(cases[0].id);
   }, [cases, caseId]);
 
-  const caseName = (id: string) => cases.find((item) => item.id === id)?.name ?? id;
+  const caseName = (id: string | null) => id ? cases.find((item) => item.id === id)?.name ?? id : "真实会话";
 
   const runCase = async () => {
     if (!caseId) {

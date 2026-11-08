@@ -2,6 +2,9 @@ import { del, get, post, put } from "./http";
 import type {
   AgentCase,
   AgentCheckRule,
+  AgentConversation,
+  AgentConversationDetail,
+  AgentDataSummary,
   AgentDocContent,
   AgentDocMeta,
   AgentRun,
@@ -58,12 +61,24 @@ export interface AgentRunQuery {
   caseId?: string;
   targetId?: string;
   status?: string;
+  sourceType?: string;
+  environment?: string;
+  conversationId?: string;
 }
 
-function query(params: Record<string, string | undefined>) {
+export interface AgentConversationQuery {
+  sourceType?: string;
+  environment?: string;
+  status?: string;
+  q?: string;
+  limit?: number;
+  offset?: number;
+}
+
+function query(params: Record<string, string | number | undefined>) {
   const search = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
-    if (value) search.set(key, value);
+    if (value !== undefined && value !== "") search.set(key, String(value));
   }
   const text = search.toString();
   return text ? `?${text}` : "";
@@ -103,4 +118,14 @@ export const agentTestApi = {
   docs: () => get<AgentDocMeta[]>("/agent-test/docs"),
   doc: (name: string) => get<AgentDocContent>(`/agent-test/docs/${segment(name)}`),
   summary: () => get<AgentTestSummary>("/agent-test/summary"),
+  dataSummary: () => get<AgentDataSummary>("/agent-test/data-summary"),
+  conversations: (params: AgentConversationQuery = {}) =>
+    get<{ items: AgentConversation[]; total: number }>(`/agent-test/conversations${query({ ...params })}`),
+  conversation: (id: string) => get<AgentConversationDetail>(`/agent-test/conversations/${segment(id)}`),
+  labelConversation: (
+    id: string,
+    input: { verdict: string; score?: number; comment?: string },
+  ) => post<{ evaluation: RunEvaluation; runId: string }>(`/agent-test/conversations/${segment(id)}/label`, input),
+  conversationToCase: (id: string, input: { name?: string; targetId?: string }) =>
+    post<{ caseId: string; name: string }>(`/agent-test/conversations/${segment(id)}/to-case`, input),
 };

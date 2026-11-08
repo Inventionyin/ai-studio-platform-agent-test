@@ -95,13 +95,26 @@ def login(client: httpx.Client, config: dict[str, Any]) -> tuple[str, str]:
     return str(token), phone
 
 
-def create_session(client: httpx.Client, config: dict[str, Any], token: str) -> str:
+def _test_headers(config: dict[str, Any], test_run_id: str = "") -> dict[str, str]:
+    """标记测试流量，尚品汇据此把 session/run 记为 is_test，不污染真实指标。"""
+    if config.get("testMode") is False or config.get("test_mode") is False:
+        return {}
+    source = str(config.get("testSource") or config.get("test_source") or "ai")
+    headers = {"X-Agent-Test": source}
+    if test_run_id:
+        headers["X-Agent-Test-Run-Id"] = str(test_run_id)
+    return headers
+
+
+def create_session(client: httpx.Client, config: dict[str, Any], token: str,
+                   test_run_id: str = "") -> str:
     data = _json_request(
         client,
         "POST",
         f"{_base_url(config)}/api/chat/sessions?fresh=true",
         json={},
-        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json",
+                 **_test_headers(config, test_run_id)},
     )
     session_id = data.get("sessionId") if isinstance(data, dict) else None
     if session_id in (None, ""):
@@ -266,8 +279,10 @@ def _send_once(
     token: str,
     session_id: str,
     content: str,
+    test_run_id: str = "",
 ) -> dict[str, Any]:
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json",
+               **_test_headers(config, test_run_id)}
     url = f"{_base_url(config)}/api/chat/sessions/{session_id}/messages"
     try:
         with client.stream("POST", url, json={"content": content}, headers=headers) as response:
@@ -298,6 +313,40 @@ def _send_once(
     if parsed.get("error"):
         error = parsed["error"] or {}
         raise AdapterError(f"尚品汇 SSE 错误：{error.get('code') or '-'} {error.get('msg') or ''}".strip())
+
+    # 自动化测试默认替用户确认“加购”动作，继续验证购物车终态；
+    # 人工体验/真实用户仍在页面上看到确认卡，不会自动执行。
+    auto_confirm = config.get("autoConfirmActions", config.get("auto_confirm_actions", True))
+    if auto_confirm and parsed.get("actions"):
+        for action in list(parsed["actions"]):
+            if not isinstance(action, dict) or action.get("tool") != "addToCart":
+                continue
+            action_id = action.get("actionId")
+            if action_id in (None, ""):
+                continue
+            try:
+                confirmed = _json_request(
+                    client,
+                    "POST",
+                    f"{_base_url(config)}/api/chat/sessions/{session_id}/actions/{action_id}/confirm",
+                    headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json",
+                             **_test_headers(config, test_run_id)},
+                )
+                message = str((confirmed or {}).get("message") or "已为您加入购物车。")
+                parsed["answer"] = message
+                args = action.get("args") or {}
+                if isinstance(args, str):
+                    try:
+                        args = json.loads(args)
+                    except json.JSONDecodeError:
+                        args = {}
+                sku_id = args.get("skuId") if isinstance(args, dict) else None
+                if sku_id not in (None, ""):
+                    parsed["sources"] = [f"cart:{sku_id}"]
+                parsed["actions"].remove(action)
+            except AdapterError:
+                # 确认失败时保留原始“请确认”回答，让规则/人工看到真实状态
+                pass
     return parsed
 
 
@@ -307,6 +356,7 @@ def send_turn(
     token: str,
     session_id: str,
     content: str,
+    test_run_id: str = "",
 ) -> dict[str, Any]:
     """Send one turn, retrying at most twice on business rate limiting."""
     raw_wait = config.get("rateLimitWaitSeconds")
@@ -315,7 +365,7 @@ def send_turn(
     wait_seconds = float(raw_wait if raw_wait is not None else 120)
     for attempt in range(3):
         try:
-            return _send_once(client, config, token, session_id, content)
+            return _send_once(client, config, token, session_id, content, test_run_id)
         except _RateLimited:
             if attempt >= 2:
                 raise AdapterError("尚品汇对话限流重试次数超限") from None
@@ -546,6 +596,7 @@ def run(
     command: str = "",
     turns: list[str] | None = None,
     payload: dict[str, Any] | None = None,
+    test_run_id: str = "",
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     """Run a multi-turn Shang Pivot conversation.
 
@@ -570,7 +621,7 @@ def run(
 
     with httpx.Client(timeout=_timeout(config), follow_redirects=True) as client:
         token, _ = login(client, config)
-        session_id = create_session(client, config, token)
+        session_id = create_session(client, config, token, test_run_id)
         if config.get("cartCleanup") or config.get("cart_cleanup"):
             try:
                 clear_cart(client, config, token)
@@ -582,7 +633,7 @@ def run(
                 time.sleep(throttle_ms / 1000)
             turn_started = datetime.now(UTC)
             timer = time.perf_counter()
-            parsed = send_turn(client, config, token, session_id, content)
+            parsed = send_turn(client, config, token, session_id, content, test_run_id)
             latency_ms = max(0, int((time.perf_counter() - timer) * 1000))
             turn_ended = datetime.now(UTC)
             command_span = _span(

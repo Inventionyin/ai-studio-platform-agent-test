@@ -39,6 +39,9 @@ class Settings(BaseSettings):
     agent_service_url: str = "http://127.0.0.1:8088"
     agent_service_timeout_seconds: int = 60
     allow_private_targets: bool = True
+    ingest_webhook_secret: str = ""
+    ingest_default_project: str = "ecommerce"
+    ingest_default_target: str = ""
 
     @property
     def oauth_providers(self) -> dict[str, dict[str, Any]]:

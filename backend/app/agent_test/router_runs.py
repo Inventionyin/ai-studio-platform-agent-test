@@ -48,6 +48,9 @@ def list_runs(
     caseId: str | None = None,
     targetId: str | None = None,
     status: str | None = None,
+    sourceType: str | None = None,
+    environment: str | None = None,
+    conversationId: str | None = None,
     pid: str = Depends(project_scope),
     db: Session = Depends(get_db),
 ) -> dict[str, Any]:
@@ -58,6 +61,12 @@ def list_runs(
         stmt = stmt.where(AgentRun.target_id == targetId)
     if status:
         stmt = stmt.where(AgentRun.status == status)
+    if sourceType:
+        stmt = stmt.where(AgentRun.source_type == sourceType)
+    if environment:
+        stmt = stmt.where(AgentRun.environment == environment)
+    if conversationId:
+        stmt = stmt.where(AgentRun.conversation_id == conversationId)
     items = db.scalars(stmt.order_by(AgentRun.created_at.desc())).all()
     return ok([run_public(item) for item in items])
 

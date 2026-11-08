@@ -186,13 +186,58 @@ class AgentTestCase(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
 
+class AgentConversation(Base):
+    """真实会话容器：人工体验(human_manual) 或生产会话(production)。"""
+
+    __tablename__ = "agent_conversations"
+    __table_args__ = (
+        UniqueConstraint(
+            "project_id", "target_id", "source_type", "external_session_id",
+            name="uq_agent_conversation_external",
+        ),
+    )
+
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    project_id: Mapped[str] = mapped_column(ForeignKey("projects.id", ondelete="CASCADE"), index=True)
+    target_id: Mapped[str] = mapped_column(ForeignKey("agent_targets.id", ondelete="CASCADE"), index=True)
+    source_type: Mapped[str] = mapped_column(String(20), default="production", index=True)
+    environment: Mapped[str] = mapped_column(String(20), default="prod")
+    external_session_id: Mapped[str] = mapped_column(String(80), default="")
+    customer_ref: Mapped[str] = mapped_column(String(80), default="")
+    channel: Mapped[str] = mapped_column(String(40), default="")
+    status: Mapped[str] = mapped_column(String(30), default="")
+    message_count: Mapped[int] = mapped_column(Integer, default=0)
+    is_test: Mapped[bool] = mapped_column(Boolean, default=False)
+    pii_masked: Mapped[bool] = mapped_column(Boolean, default=True)
+    metadata_: Mapped[dict[str, Any]] = mapped_column("metadata", JSONB, default=dict)
+    started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    ended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
 class AgentRun(Base):
     __tablename__ = "agent_runs"
 
     id: Mapped[str] = mapped_column(String(40), primary_key=True)
     project_id: Mapped[str] = mapped_column(ForeignKey("projects.id", ondelete="CASCADE"), index=True)
     target_id: Mapped[str] = mapped_column(ForeignKey("agent_targets.id", ondelete="CASCADE"), index=True)
-    case_id: Mapped[str] = mapped_column(ForeignKey("agent_test_cases.id", ondelete="CASCADE"), index=True)
+    case_id: Mapped[str | None] = mapped_column(
+        ForeignKey("agent_test_cases.id", ondelete="CASCADE"), nullable=True, index=True
+    )
+    conversation_id: Mapped[str | None] = mapped_column(
+        ForeignKey("agent_conversations.id", ondelete="CASCADE"), nullable=True, index=True
+    )
+    source_type: Mapped[str] = mapped_column(String(20), default="ai_test", index=True)
+    environment: Mapped[str] = mapped_column(String(20), default="test")
+    external_session_id: Mapped[str] = mapped_column(String(80), default="")
+    external_run_id: Mapped[str] = mapped_column(String(80), default="")
+    external_message_id: Mapped[str] = mapped_column(String(80), default="")
+    dataset_version: Mapped[str] = mapped_column(String(40), default="")
+    is_test: Mapped[bool] = mapped_column(Boolean, default=True)
+    pii_masked: Mapped[bool] = mapped_column(Boolean, default=True)
+    metadata_: Mapped[dict[str, Any]] = mapped_column("metadata", JSONB, default=dict)
+    ingested_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     trace_id: Mapped[str] = mapped_column(String(64), unique=True, index=True)
     status: Mapped[str] = mapped_column(String(20), default="pending")
     input: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
@@ -206,6 +251,25 @@ class AgentRun(Base):
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     triggered_by: Mapped[str] = mapped_column(String(40), default="")
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class AgentIngestEvent(Base):
+    """webhook 幂等收件箱；同一 source+eventId 只处理一次。"""
+
+    __tablename__ = "agent_ingest_events"
+    __table_args__ = (
+        UniqueConstraint("source", "event_id", name="uq_agent_ingest_event"),
+    )
+
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    source: Mapped[str] = mapped_column(String(30), default="shangpin")
+    event_id: Mapped[str] = mapped_column(String(80), index=True)
+    event_type: Mapped[str] = mapped_column(String(60), default="")
+    payload: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
+    status: Mapped[str] = mapped_column(String(20), default="processed")
+    error: Mapped[str] = mapped_column(Text, default="")
+    received_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    processed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
 
 class TraceSpan(Base):

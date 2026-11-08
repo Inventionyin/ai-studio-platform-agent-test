@@ -112,6 +112,12 @@ def execute_run(
         project_id=project_id,
         target_id=target.id,
         case_id=case.id,
+        source_type="ai_test",
+        environment="test",
+        is_test=True,
+        pii_masked=True,
+        dataset_version=str((case.payload or {}).get("datasetVersion") or ""),
+        metadata_={"suite": (case.payload or {}).get("suite") or "", "triggeredBy": user_id},
         trace_id=trace_id,
         status="running",
         input=sanitize(run_input),
@@ -133,6 +139,7 @@ def execute_run(
             case.command,
             case.payload or {},
             turns=turns,
+            run_id=run.id,
         )
     except Exception as exc:  # noqa: BLE001 - a bad target must never leave a running run
         message = str(exc) if isinstance(exc, AdapterError) else f"{type(exc).__name__}: {exc}"

@@ -4,7 +4,16 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 
-from ..models import AgentRun, AgentTarget, AgentTestCase, FixRecord, RunEvaluation, TraceArtifact, TraceSpan
+from ..models import (
+    AgentConversation,
+    AgentRun,
+    AgentTarget,
+    AgentTestCase,
+    FixRecord,
+    RunEvaluation,
+    TraceArtifact,
+    TraceSpan,
+)
 
 
 def iso(value: datetime | None) -> str | None:
@@ -54,6 +63,16 @@ def run_public(item: AgentRun) -> dict[str, Any]:
         "projectId": item.project_id,
         "targetId": item.target_id,
         "caseId": item.case_id,
+        "conversationId": item.conversation_id,
+        "sourceType": item.source_type,
+        "environment": item.environment,
+        "externalSessionId": item.external_session_id,
+        "externalRunId": item.external_run_id,
+        "datasetVersion": item.dataset_version,
+        "isTest": item.is_test,
+        "piiMasked": item.pii_masked,
+        "metadata": item.metadata_ or {},
+        "ingestedAt": iso(item.ingested_at),
         "traceId": item.trace_id,
         "status": item.status,
         "input": item.input or {},
@@ -67,6 +86,28 @@ def run_public(item: AgentRun) -> dict[str, Any]:
         "finishedAt": iso(item.finished_at),
         "triggeredBy": item.triggered_by,
         "createdAt": iso(item.created_at),
+    }
+
+
+def conversation_public(item: AgentConversation) -> dict[str, Any]:
+    return {
+        "id": item.id,
+        "projectId": item.project_id,
+        "targetId": item.target_id,
+        "sourceType": item.source_type,
+        "environment": item.environment,
+        "externalSessionId": item.external_session_id,
+        "customerRef": item.customer_ref,
+        "channel": item.channel,
+        "status": item.status,
+        "messageCount": item.message_count,
+        "isTest": item.is_test,
+        "piiMasked": item.pii_masked,
+        "metadata": item.metadata_ or {},
+        "startedAt": iso(item.started_at),
+        "endedAt": iso(item.ended_at),
+        "createdAt": iso(item.created_at),
+        "updatedAt": iso(item.updated_at),
     }
 
 

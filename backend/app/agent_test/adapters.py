@@ -65,6 +65,7 @@ def run_target(
     command: str,
     payload: dict[str, Any] | None = None,
     turns: list[str] | None = None,
+    run_id: str = "",
 ) -> AdapterResult:
     """Execute a target synchronously and return the raw trace."""
     started = time.perf_counter()
@@ -79,7 +80,8 @@ def run_target(
     elif adapter == "shangpin":
         from . import shangpin
 
-        trace, conversation = shangpin.run(config, command, turns=turns, payload=payload or {})
+        trace, conversation = shangpin.run(config, command, turns=turns, payload=payload or {},
+                                           test_run_id=run_id)
     else:
         raise AdapterError(f"暂不支持的适配器类型：{adapter_type}")
     elapsed = int((time.perf_counter() - started) * 1000)

@@ -63,6 +63,17 @@ export function AgentTestCasePanel() {
             actions={(index) => (
               <>
                 <Btn v="ghost" onClick={() => openEditTarget(targets[index])}>编辑</Btn>
+                {targets[index].adapterType === "shangpin" && (
+                  <Btn
+                    v="ghost"
+                    onClick={() => {
+                      const base = String(targets[index].config?.baseUrl || "").replace(/\/$/, "");
+                      if (base) window.open(`${base}/ai?test=human`, "_blank", "noopener");
+                    }}
+                  >
+                    人工体验
+                  </Btn>
+                )}
                 <Btn v="ghost" disabled={checkingId !== null} onClick={() => void checkTarget(targets[index])}>
                   {checkingId === targets[index].id ? "检查中…" : "健康检查"}
                 </Btn>
