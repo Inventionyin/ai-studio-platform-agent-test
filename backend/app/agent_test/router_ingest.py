@@ -10,6 +10,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from ..config import settings
@@ -203,5 +204,9 @@ async def ingest_shangpin(
             run.total_tokens = int(payload.get("tokens") or run.total_tokens or 0)
             run.ingested_at = now
 
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        return ok({"duplicate": True, "eventId": event_id})
     return ok({"duplicate": False, "eventId": event_id})
