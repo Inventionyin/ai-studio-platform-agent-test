@@ -99,7 +99,7 @@ def create_session(client: httpx.Client, config: dict[str, Any], token: str) -> 
     data = _json_request(
         client,
         "POST",
-        f"{_base_url(config)}/api/chat/sessions",
+        f"{_base_url(config)}/api/chat/sessions?fresh=true",
         json={},
         headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
     )
