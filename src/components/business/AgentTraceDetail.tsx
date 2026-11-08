@@ -73,7 +73,7 @@ export function AgentTraceDetail({ runId }: { runId: string | null }) {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
           <div><div className="text-slate-500">Run ID</div><div className="mt-0.5 font-mono text-[11px] text-slate-800 break-all">{run.id}</div></div>
           <div><div className="text-slate-500">状态</div><div className="mt-0.5"><Tag t={runLabel(run.status)} c={runTone(run.status)} /></div></div>
-          <div><div className="text-slate-500">用例</div><div className="mt-0.5 font-mono text-[11px] text-slate-800 break-all">{run.caseId}</div></div>
+          <div><div className="text-slate-500">用例</div><div className="mt-0.5 font-mono text-[11px] text-slate-800 break-all">{run.caseId || "真实会话"}</div></div>
           <div><div className="text-slate-500">目标</div><div className="mt-0.5 font-mono text-[11px] text-slate-800 break-all">{run.targetId}</div></div>
           <div><div className="text-slate-500">耗时</div><div className="mt-0.5 text-slate-800">{fmtMs(run.latencyMs)}</div></div>
           <div><div className="text-slate-500">Token</div><div className="mt-0.5 text-slate-800">{run.totalTokens ?? "-"}</div></div>
