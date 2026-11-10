@@ -114,6 +114,8 @@ def create_session(client: httpx.Client, config: dict[str, Any], token: str,
         f"{_base_url(config)}/api/chat/sessions?fresh=true",
         json={},
         headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json",
+                 # 每个平台 run 独立 client_key：即使同一测试手机并发，也不会互相结束会话。
+                 "X-Chat-Client-Key": f"platform-{test_run_id or new_id()}",
                  **_test_headers(config, test_run_id)},
     )
     session_id = data.get("sessionId") if isinstance(data, dict) else None
